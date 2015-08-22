@@ -1,0 +1,23 @@
+You could need to set env variable com.objogate.wl.keyboard to US.
+
+Running Java from the command like
+  java ... -Dcom.objogate.wl.keyboard=US
+
+In an Ant script,
+  <junit>
+    <sysproperty key="com.objogate.wl.keyboard" value="US"/>
+    ...
+  </junit>
+
+In the <build> section of a Maven pom,
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>{your-version}</version>
+
+    <configuration>
+      <systemPropertyVariables>
+        <com.objogate.wl.keyboard>US</com.objogate.wl.keyboard>
+      </systemPropertyVariables>
+    </configuration>
+  </plugin>

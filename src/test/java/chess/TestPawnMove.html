@@ -1,0 +1,28 @@
+
+<html  xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <link href="../../concordion.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>Moving Pawns</h1>
+
+<p>
+    In order to play our games of chess we are going to need to move pawns
+</p>
+
+<div class="example">
+    <span>Given a white pawn is on its starting position of </span>
+    <span concordion:set="#initialSquare">b2</span>
+    <span concordion:execute="setupGameWithOnePawnOn(#initialSquare)"></span><br/>
+    <span>When I choose that pawn to move</span>
+    <span concordion:execute="selectPieceToMove(#initialSquare)"></span><br/>
+    <span>And select to move it forward one square to </span>
+    <span concordion:set="#targetSquare">b3</span>
+    <span concordion:execute="selectLocationToMovePieceTo(#targetSquare)"></span><br/>
+    <span>Then the pawn should be on </span>
+    <span concordion:assertTrue="shouldBePawn(#targetSquare)">b3</span><br/>
+    <span>And the starting position </span>
+    <span concordion:assertTrue="shouldBeEmpty(#initialSquare)">should be empty</span>
+</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+With Buildr
+1. install buildr : gem install buildr
+2. see the tests  : buildr test
+3. play           : buildr chess:run
+
+With Ant
+1. install ant    : http://ant.apache.org/
+2. see the tests  : ant test
+3. play           : ant play
+

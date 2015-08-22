@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Code coverage" default="rebuild" xmlns:jacoco="antlib:org.jacoco.ant">
+
+    <property name="src.dir" location="./src/main/java" />
+    <property name="test.dir" location="./src/test/java" />
+
+    <property name="result.dir" location="./target" />
+    <property name="result.classes.dir" location="${result.dir}/classes" />
+    <property name="result.test.classes.dir" location="${result.dir}/test-classes" />
+
+    <property name="coverage.dir" location="./reports/coverage" />
+    <property name="result.report.dir" location="${coverage.dir}/site" />
+    <property name="result.exec.file" location="${coverage.dir}/jacoco.exec" />
+
+    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+        <classpath path="lib/jacocoant.jar" />
+    </taskdef>
+
+    <target name="clean">
+        <delete dir="${result.dir}" />
+        <delete dir="${coverage.dir}" />
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${result.classes.dir}" />
+        <mkdir dir="${result.test.classes.dir}" />
+        <javac srcdir="${src.dir}" destdir="${result.classes.dir}" debug="true" includeantruntime="false" />
+        <copy todir="${result.classes.dir}/gui/renderers/">
+            <fileset dir="${src.dir}/gui/renderers"/>
+        </copy>
+        <javac includeAntRuntime="false" srcdir="src/test/java" destdir="target/test-classes"
+               classpath="${result.classes.dir}; lib/junit-dep-4.11.jar; lib/com.springsource.org.objenesis-1.0.0.jar; lib/mockito-core-1.9.5.jar; lib/windowlicker-core-DEV.jar; lib/windowlicker-swing-DEV.jar; lib/imhotep-20140319.jar; lib/hamcrest-all-1.2.jar" />
+    </target>
+
+    <target name="test" depends="compile">
+        <mkdir dir="${coverage.dir}" />
+        <jacoco:coverage destfile="${result.exec.file}">
+            <junit haltonfailure="on" fork="true">
+                <classpath>
+                    <pathelement location="lib/junit-dep-4.11.jar"/>
+                    <pathelement location="lib/com.springsource.org.objenesis-1.0.0.jar"/>
+                    <pathelement location="lib/mockito-core-1.9.5.jar"/>
+                    <pathelement location="lib/windowlicker-core-DEV.jar"/>
+                    <pathelement location="lib/windowlicker-swing-DEV.jar"/>
+                    <pathelement location="lib/hamcrest-all-1.2.jar"/>
+                    <pathelement location="${result.classes.dir}" />
+                    <pathelement location="${result.test.classes.dir}" />
+                </classpath>
+                <batchtest fork="yes">
+                    <fileset dir="${result.test.classes.dir}">
+                        <include name="**/*Test.class"/>
+                    </fileset>
+                </batchtest>
+                <jvmarg value="-Dcom.objogate.wl.keyboard=US"/>
+            </junit>
+        </jacoco:coverage>
+    </target>
+
+    <target name="report" depends="test">
+        <mkdir dir="${result.report.dir}" />
+        <jacoco:report>
+
+            <executiondata>
+                <file file="${result.exec.file}" />
+            </executiondata>
+
+            <structure name="Chess code coverage">
+                <classfiles>
+                    <fileset dir="${result.classes.dir}" />
+                </classfiles>
+                <sourcefiles encoding="UTF-8">
+                    <fileset dir="${src.dir}" />
+                </sourcefiles>
+            </structure>
+
+            <html destdir="${result.report.dir}" />
+            <csv destfile="${result.report.dir}/report.csv" />
+            <xml destfile="${result.report.dir}/report.xml" />
+        </jacoco:report>
+    </target>
+
+    <target name="rebuild" depends="clean,compile,test,report" />
+
+</project>

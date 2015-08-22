@@ -1,0 +1,15 @@
+Automatically moves the Rook on castling
+Show allowed moves when clicking on a piece
+Show captured pieces
+Display names of players
+Time control
+Refuse not allowed moves
+Undo
+Export game in algebraic notation
+Import and play game (interactive)
+Redo
+3D display
+Network game
+ELO rating
+The same player cannot play twice in a row
+Player with white pieces starts

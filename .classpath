@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="lib" path="lib/com.springsource.org.objenesis-1.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/hamcrest-all-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/imhotep-20140319.jar"/>
+	<classpathentry kind="lib" path="lib/jacocoant.jar"/>
+	<classpathentry kind="lib" path="lib/junit-dep-4.11.jar"/>
+	<classpathentry kind="lib" path="lib/mockito-core-1.9.5.jar"/>
+	<classpathentry kind="lib" path="lib/windowlicker-core-DEV.jar"/>
+	<classpathentry kind="lib" path="lib/windowlicker-swing-DEV.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/concordion-1.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/ognl-2.6.9.jar"/>
+	<classpathentry kind="lib" path="lib/xom-1.2.5.jar"/>
+	<classpathentry kind="output" path="out/production/main"/>
+</classpath>

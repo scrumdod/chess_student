@@ -1,3 +1,24 @@
+#Product Backlog
+
+* Player with white pieces starts
+* Show allowed moves when clicking on a piece
+* Automatically moves the Rook on castling
+* Show captured pieces
+* Display names of players
+* Time control
+* Refuse not allowed moves
+* Undo
+* Export game in algebraic notation
+* Import and play game (interactive)
+* Redo
+* 3D display
+* Network game
+* ELO rating
+* The same player cannot play twice in a row
+
+
+#Build Instructions
+
 With Buildr
 1. install buildr : gem install buildr
 2. see the tests  : buildr test
@@ -7,4 +28,6 @@ With Ant
 1. install ant    : http://ant.apache.org/
 2. see the tests  : ant test
 3. play           : ant play
+
+
 
